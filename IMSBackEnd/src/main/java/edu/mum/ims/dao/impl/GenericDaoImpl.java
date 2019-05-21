@@ -9,7 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import edu.mum.ims.dao.GenericDao;
-import edu.mum.ims.dao.MemberDao;
+import edu.mum.ims.dao.UserDao;
 
 
 /*@SuppressWarnings("unchecked")

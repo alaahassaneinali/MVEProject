@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-<title>Members</title>
+<title>Users</title>
 </head>
 <body>
 	<section>
@@ -17,8 +17,8 @@
  			
  				<div class="pull-left"> <h3>${SpecialBlurb}</h3> </div>
 			</div>
- 			<c:if test = "${not empty member }" >
- 					<a href="<spring:url value="/members/add" />" class="btn btn-danger btn-mini pull-right">Add a new one</a>	
+ 			<c:if test = "${not empty user }" >
+ 					<a href="<spring:url value="/users/add" />" class="btn btn-danger btn-mini pull-right">Add a new one</a>	
  				<br>
 				<spring:url var="logoutUrl" value="/logout"/>
 				<form action="${logoutUrl}" method="get">
@@ -36,13 +36,13 @@
 
 	<section class="container">
 		<div class="row">
-			<c:forEach items="${members}" var="member">
+			<c:forEach items="${users}" var="user">
 				<div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
 					<div class="thumbnail">
  						<div class="caption">
-							<h4>First Name - ${member.firstName}</h4>
-							<h4>Last Name -  ${member.lastName}
-						 <a href="<spring:url value="/members/${member.id}" />" class="btn btn-primary  btn-mini  ">View</a>
+							<h4>First Name - ${user.firstName}</h4>
+							<h4>Last Name -  ${user.lastName}
+						 <a href="<spring:url value="/users/${user.id}" />" class="btn btn-primary  btn-mini  ">View</a>
  				</h4>
  					</div>
 					</div>

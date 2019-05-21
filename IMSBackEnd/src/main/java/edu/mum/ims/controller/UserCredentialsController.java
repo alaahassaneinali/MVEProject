@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import edu.mum.ims.domain.Member;
 import edu.mum.ims.domain.UserCredentials;
 import edu.mum.ims.service.UserCredentialsService;
 
@@ -31,8 +30,6 @@ import edu.mum.ims.service.UserCredentialsService;
  
 	}
 	
-
- 	
  	@RequestMapping("/{id}")
 	public UserCredentials findOne(@PathVariable("id") String userName ) {
 

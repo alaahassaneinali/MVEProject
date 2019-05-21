@@ -11,7 +11,6 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 
 import edu.mum.ims.dao.ProductDao;
-import edu.mum.ims.domain.Member;
 import edu.mum.ims.domain.Product;
 
 	@Repository
