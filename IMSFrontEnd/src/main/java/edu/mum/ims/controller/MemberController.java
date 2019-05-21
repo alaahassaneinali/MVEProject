@@ -14,48 +14,47 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import edu.mum.ims.domain.Member;
-import edu.mum.ims.service.MemberService;
+import edu.mum.ims.domain.User;
+import edu.mum.ims.service.UserService;
 
 @Controller
-@RequestMapping({"/members"})
+@RequestMapping({"/users"})
 public class MemberController {
 	
 	@Autowired
-	private MemberService  memberService;
+	private UserService  userService;
 
 	@RequestMapping("")
 	public String listMembers(Model model) {
-		List<Member> members = memberService.findAll();
-		model.addAttribute("members", members);
-		return "members";
+		List<User> users = userService.findAll();
+		model.addAttribute("users", users);
+		return "users";
 	}
 	
   	@RequestMapping("/{id}")
 	public String getMemberById(@PathVariable("id") Long id,Model model) {
-		Member member = memberService.findOne(id);
-		model.addAttribute("member", member);
+		User user = userService.findOne(id);
+		model.addAttribute("user", user);
 
- 		return "member";
+ 		return "user";
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public String getAddNewMemberForm(@ModelAttribute("newMember") Member newMember) {
-	   return "addMember";
+	public String getAddNewMemberForm(@ModelAttribute("newUser") User newUser) {
+	   return "addUser";
 	}
 	   
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String processAddNewMemberForm(@ModelAttribute("newMember") @Valid Member memberToBeAdded, BindingResult result) {
+	public String processAddNewMemberForm(@ModelAttribute("newUser") @Valid User userToBeAdded, BindingResult result) {
  
 		if(result.hasErrors()) {
-			return "addMember";
+			return "addUser";
 		}
 
 			 //  Error caught by ControllerAdvice IF no authorization...
-//		memberService.saveFull(memberToBeAdded);
-		memberService.save(memberToBeAdded);
+		userService.save(userToBeAdded);
 
-	   	return "redirect:/members";
+	   	return "redirect:/users";
  
 	}
 	

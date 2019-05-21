@@ -8,21 +8,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import edu.mum.ims.domain.Member;
+import edu.mum.ims.domain.User;
 import edu.mum.ims.domain.UserCredentials;
-import edu.mum.ims.service.MemberService;
+import edu.mum.ims.service.UserService;
 import edu.mum.ims.service.UserCredentialsService;
 import edu.mum.ims.service.impl.UserCredentialsServiceImpl;
 
 @Controller
-@SessionAttributes("member")
+@SessionAttributes("user")
 public class LoginController {
 
 	@Autowired
 	UserCredentialsService credentialsService;
 
 	@Autowired
-	MemberService memberService;
+	UserService userService;
 
 	@RequestMapping(value="/login", method = RequestMethod.GET)
 	public String login() {
@@ -50,10 +50,10 @@ public class LoginController {
 			return  "login";
  
 		///DEMO JSON bidirectional issue solution
-		Member member = validCredentials.getMember();
- 		member = memberService.findOne(member.getId());
+		User user = validCredentials.getUser();
+ 		user = userService.findOne(user.getId());
  		
-		model.addAttribute("member", validCredentials.getMember());
+		model.addAttribute("user", validCredentials.getUser());
  		return "redirect:/welcome";
 	}
  

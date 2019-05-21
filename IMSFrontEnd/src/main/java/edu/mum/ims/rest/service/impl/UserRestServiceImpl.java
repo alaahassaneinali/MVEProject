@@ -10,13 +10,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import edu.mum.ims.domain.Member;
-import edu.mum.ims.domain.Product;
+import edu.mum.ims.domain.User;
 import edu.mum.ims.rest.RestHttpHeader;
-import edu.mum.ims.rest.service.MemberRestService;
+import edu.mum.ims.rest.service.UserRestService;
 
 @Component
-public class MemberRestServiceImpl implements MemberRestService {
+public class UserRestServiceImpl implements UserRestService {
 
 	@Autowired
 	RestHttpHeader restHelper;
@@ -24,27 +23,29 @@ public class MemberRestServiceImpl implements MemberRestService {
 	String baseUrl = "http://localhost:8080/IMSBackEnd/members";
 	String baseUrlExtended = baseUrl + "/";
 
-	public List<Member> findAll() {
-		
+	public List<User> findAll() {
+
 		RestTemplate restTemplate = restHelper.getRestTemplate();
 		HttpEntity httpEntity = new HttpEntity(restHelper.getHttpHeaders());
-		ResponseEntity<Member[]> responseEntity = restTemplate.exchange(baseUrl, HttpMethod.GET, httpEntity, Member[].class);	
- 		List<Member> userList = Arrays.asList(responseEntity.getBody());
+		ResponseEntity<User[]> responseEntity = restTemplate.exchange(baseUrl, HttpMethod.GET, httpEntity,
+				User[].class);
+		List<User> userList = Arrays.asList(responseEntity.getBody());
 		return userList;
 	}
 
-	public Member findOne(Long index) {
+	public User findOne(Long id) {
 		RestTemplate restTemplate = restHelper.getRestTemplate();
 		HttpEntity httpEntity = new HttpEntity(restHelper.getHttpHeaders());
-		ResponseEntity<Member> responseEntity = restTemplate.exchange(baseUrlExtended + index, HttpMethod.GET, httpEntity, Member.class);	
-		Member member = responseEntity.getBody();
- 		return member;
+		ResponseEntity<User> responseEntity = restTemplate.exchange(baseUrlExtended + id, HttpMethod.GET, httpEntity,
+				User.class);
+		User user = responseEntity.getBody();
+		return user;
 	}
 
-	public Member save(Member member) {
+	public User save(User user) {
 		RestTemplate restTemplate = restHelper.getRestTemplate();
-		HttpEntity<Member> httpEntity = new HttpEntity<Member>(member, restHelper.getHttpHeaders());
-		member = restTemplate.postForObject(baseUrl, httpEntity, Member.class);
+		HttpEntity<User> httpEntity = new HttpEntity<User>(user, restHelper.getHttpHeaders());
+		user = restTemplate.postForObject(baseUrl, httpEntity, User.class);
 		return null;
 	}
 
