@@ -40,8 +40,6 @@ public class Order {
 	   @OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	   private Set<OrderItem> items = new HashSet<OrderItem>();
 
-	   @OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	   private Set<OrderPayment> payments = new HashSet<OrderPayment>();
 
 	public Long getId() {
 		return id;
@@ -73,24 +71,10 @@ public class Order {
 
 	public void setItems(Set<OrderItem> items) {
 		this.items = items;
-	}
-	
-	public Set<OrderPayment> getPayments() {
-		return payments;
-	}
-
-	public void setPayments(Set<OrderPayment> payments) {
-		this.payments = payments;
-	}
+	}	
 
 	public void addOrderItem(OrderItem orderItem) {
 		this.items.add(orderItem);
 		orderItem.setOrder(this);
 	}
-
-	public void addOrderPayment(OrderPayment orderPayment) {
-		this.payments.add(orderPayment);
-		orderPayment.setOrder(this);
-	}
-
 }
