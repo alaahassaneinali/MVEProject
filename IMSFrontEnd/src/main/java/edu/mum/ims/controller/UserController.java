@@ -19,7 +19,7 @@ import edu.mum.ims.service.UserService;
 
 @Controller
 @RequestMapping({"/users"})
-public class MemberController {
+public class UserController {
 	
 	@Autowired
 	private UserService  userService;
