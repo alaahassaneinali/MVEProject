@@ -20,7 +20,7 @@ public class ProductRestServiceImpl  implements ProductRestService {
 	@Autowired
 	RestHttpHeader restHelper;
 	
-	String baseUrl = "http://localhost:8080/IMSBackEnd/products";
+	String baseUrl = "http://localhost:9091/IMSBackEnd/products";
 	String baseUrlExtended = baseUrl + "/";
 
 	public List<Product> findAll() {

@@ -20,7 +20,7 @@ public class UserRestServiceImpl implements UserRestService {
 	@Autowired
 	RestHttpHeader restHelper;
 
-	String baseUrl = "http://localhost:8080/IMSBackEnd/members";
+	String baseUrl = "http://localhost:9091/IMSBackEnd/users";
 	String baseUrlExtended = baseUrl + "/";
 
 	public List<User> findAll() {

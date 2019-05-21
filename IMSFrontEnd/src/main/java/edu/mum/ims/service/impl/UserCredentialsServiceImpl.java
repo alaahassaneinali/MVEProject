@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import edu.mum.ims.domain.UserCredentials;
 import edu.mum.ims.rest.service.UserCredentialsRestService;
 
-@Service
+@Service("userCredentialsService")
 public class UserCredentialsServiceImpl implements edu.mum.ims.service.UserCredentialsService {
 	
  // Kludge for Authenticating on REST  - used in RestHttpHeader & LoginController

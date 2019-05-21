@@ -13,18 +13,18 @@
 			<div class="container">
 				<h1> ${greeting} </h1>
 				<p> ${tagline} </p>
-  					Welcome  ${member.firstName} !
+  					Welcome  ${user.firstName} !
  
 			</div>	 
  
 				  <div class="container">
 					<c:choose>
-					    <c:when test="${empty member}">
+					    <c:when test="${empty user}">
       					<a href="<spring:url value='/login' />" class="btn btn-default pull-right"> Login</a>
 					    </c:when>
 					    <c:otherwise>
-		 					<a href="<spring:url value="/members/add" />" class="btn btn-default pull-right">Add Member</a>	
-		 					<a href="<spring:url value="/members" />" class="btn btn-default pull-right">Member List</a>	
+		 					<a href="<spring:url value="/users/add" />" class="btn btn-default pull-right">Add User</a>	
+		 					<a href="<spring:url value="/users" />" class="btn btn-default pull-right">User List</a>	
 		 					<br>
 		 					<a href="<spring:url value="/products/add" />" class="btn btn-default pull-right">Add Product</a>	
 		 					<a href="<spring:url value="/products/all" />" class="btn btn-default pull-right">Product List</a>	
@@ -33,7 +33,7 @@
 		 
  					    </c:otherwise>
 					</c:choose>	
- 					 <a href="<spring:url value='/members' />" class="btn btn-default">
+ 					 <a href="<spring:url value='/user' />" class="btn btn-default">
 						<span class="glyphicon-hand-left glyphicon"></span> Go to Community
 					</a>
 				</div>	

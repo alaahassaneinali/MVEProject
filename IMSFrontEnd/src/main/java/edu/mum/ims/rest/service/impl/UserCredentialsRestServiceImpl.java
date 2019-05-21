@@ -21,7 +21,7 @@ public class UserCredentialsRestServiceImpl implements UserCredentialsRestServic
 	@Autowired
 	RestHttpHeader restHelper;
 
-	String baseUrl = "http://localhost:8080/IMSBackEnd/userCredentials";
+	String baseUrl = "http://localhost:9091/IMSBackEnd/userCredentials";
 	String baseUrlExtended = baseUrl + "/";
 
 	public List<UserCredentials> findAll() {
