@@ -19,8 +19,8 @@ public class ShipNoticeTransformerImpl implements ShipNoticeTransformer {
       */
 	@Transformer(inputChannel="fromAmqpShipmentNotice", outputChannel="processShipmentNotice")
 	public Shipment transformShipNotice(Shipment shipment) {
-       
-	
+       String shipNo=shipment.getShipmentNumber();
+	shipment.setShipmentNumber(shipNo);
 	  
 		return shipment;
 	}

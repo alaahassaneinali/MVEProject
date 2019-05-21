@@ -1,5 +1,6 @@
 package edu.mum.ims.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -33,7 +34,7 @@ enum ShipmentService
 { 
     FEDEX, USPS, DHL; 
 } 
-public class Shipment {
+public class Shipment implements Serializable{
 	
 	
 	  @Id
