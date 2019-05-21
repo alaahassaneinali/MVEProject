@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:integration="http://www.springframework.org/schema/integration"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 			http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -11,30 +11,44 @@
 			http://www.springframework.org/schema/integration/spring-integration.xsd">
 
 
- <context:annotation-config/>
- 
- 
+	<context:annotation-config />
 
-    <context:component-scan base-package="edu.mum"/>
 
-	<bean id="connectionFactory" class="org.springframework.jms.connection.CachingConnectionFactory">
-		<property name="targetConnectionFactory"> 
-					<bean class="org.apache.activemq.ActiveMQConnectionFactory">
-<!-- vm:  local[embedded] no network traffic OR  tcp:  -->
-				<property name="brokerURL" value="tcp://localhost:61616"/>
-				
+
+	<context:component-scan base-package="edu.mum" />
+
+	<bean id="connectionFactory"
+		class="org.springframework.jms.connection.CachingConnectionFactory">
+		<property name="targetConnectionFactory">
+			<bean class="org.apache.activemq.ActiveMQConnectionFactory">
+				<!-- vm: local[embedded] no network traffic OR tcp: -->
+				<property name="brokerURL" value="tcp://localhost:61616" />
+
 			</bean>
 		</property>
-		<property name="sessionCacheSize" value="10"/>
+		<property name="sessionCacheSize" value="10" />
 	</bean>
 
+	<!-- Queues used to send shipments to Shipping Services -->
+	<bean id="shipment.JsonShipmentQueue"
+		class="org.apache.activemq.command.ActiveMQQueue">
+		<constructor-arg value="JsonShipmentQueue" />
+	</bean>
+	<bean id="shipment.StandardShipmentQueue"
+		class="org.apache.activemq.command.ActiveMQQueue">
+		<constructor-arg value="StandardShipmentQueue" />
+	</bean>
+	<!-- Queues used to send shipments to Shipping Services -->
+	
 
-<bean id="jmsoutshipCompany1Queue" class="org.apache.activemq.command.ActiveMQQueue"> 
-<constructor-arg value="queue.shipCompany1"/> 
-</bean>
-
-	<bean id="jmsoutshipCompany2Queue" class="org.apache.activemq.command.ActiveMQQueue">
-		<constructor-arg value="queue.shipCompany2"/>
+	<bean id="jmsoutshipCompany1Queue"
+		class="org.apache.activemq.command.ActiveMQQueue">
+		<constructor-arg value="queue.shipCompany1" />
 	</bean>
 
- </beans>
+	<bean id="jmsoutshipCompany2Queue"
+		class="org.apache.activemq.command.ActiveMQQueue">
+		<constructor-arg value="queue.shipCompany2" />
+	</bean>
+
+</beans>

@@ -1,6 +1,5 @@
 package edu.mum.amqp;
 
-import edu.mum.domain.Item;
 import edu.mum.ims.domain.Shipment;
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate;

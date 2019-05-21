@@ -80,6 +80,15 @@ public class Shipment implements Serializable{
 		this.shipmentNumber = shipmentNumber;
 	}
 
+	
+	public ShipmentComp getShipComp() {
+		return shipComp;
+	}
+
+	public void setShipComp(ShipmentComp shipComp) {
+		this.shipComp = shipComp;
+	}
+
 	public Set<ShipmentItem> getItems() {
 		return items;
 	}

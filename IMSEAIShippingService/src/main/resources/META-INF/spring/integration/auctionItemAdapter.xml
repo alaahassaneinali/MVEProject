@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/integration"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:amqp="http://www.springframework.org/schema/integration/amqp"
+	xmlns:jms="http://www.springframework.org/schema/integration/jms"
+	xmlns:stream="http://www.springframework.org/schema/integration/stream"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context.xsd
+			http://www.springframework.org/schema/integration
+			http://www.springframework.org/schema/integration/spring-integration.xsd
+ 			http://www.springframework.org/schema/integration/amqp 
+ 				http://www.springframework.org/schema/integration/amqp/spring-integration-amqp.xsd
+     		http://www.springframework.org/schema/integration/jms
+			http://www.springframework.org/schema/integration/jms/spring-integration-jms.xsd
+			http://www.springframework.org/schema/integration/stream
+			http://www.springframework.org/schema/integration/stream/spring-integration-stream.xsd">
+
+	<!-- Order is actually from remote AMQP source ...NOT from an EIP Gateway -->
+
+	<amqp:inbound-channel-adapter channel="fromAmqpAuctionItem"
+		connection-factory="amqpConnectionFactory"
+		queue-names="auctionItemQueue" />
+
+	<channel id="fromAmqpAuctionItem" />
+
+	<transformer id="transformAuctionItem" ref="auctionItemTransformer"
+		input-channel="fromAmqpAuctionItem" output-channel="routeAuctionItem" />
+	<beans:bean id = "auctionItemTransformer"
+		class="edu.mum.integration.AuctionItemTransformerImpl" />
+
+	<channel id="routeAuctionItem" />
+
+	<jms:outbound-channel-adapter id="jmsoutHighPriceAuctionItem"
+		channel="highPriceAuctionItemChannel"
+		destination="auctionCenter.HighPriceItemQueue" />
+
+
+	<router input-channel="routeAuctionItem" method="routeAuctionItem"
+		ignore-send-failures="true" ref="auctionItemRouter">
+	</router>
+	
+	<channel id="highPriceAuctionItemChannel"></channel>
+	<channel id="moderatePriceAuctionItemChannel"></channel>
+	
+	
+	<jms:outbound-channel-adapter id="jmsoutModeratePriceAuctionItem"
+		channel="moderatePriceAuctionItemChannel"
+		destination="auctionCenter.ModeratePriceItemQueue">
+	</jms:outbound-channel-adapter>
+</beans:beans>
