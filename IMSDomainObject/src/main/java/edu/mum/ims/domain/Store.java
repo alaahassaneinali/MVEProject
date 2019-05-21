@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Store {
@@ -13,6 +14,8 @@ public class Store {
 	@Column(name = "id", updatable = false, nullable = false)
      private long id;
 	private String name;
+	
+	@OneToOne
     private Address address;
     
     public long getId() {

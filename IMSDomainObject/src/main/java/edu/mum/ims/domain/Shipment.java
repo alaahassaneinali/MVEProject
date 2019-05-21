@@ -25,15 +25,7 @@ import javax.validation.Valid;
 
 @Entity
 @Table(name = "purchaseShipment")
-@NamedEntityGraph(name = "graph.Shipment.items", 
-               attributeNodes = { @NamedAttributeNode(value = "items", subgraph = "items"),
-            		   @NamedAttributeNode(value = "payments")} ,
-               subgraphs = @NamedSubgraph(name = "items", 
-               				attributeNodes = @NamedAttributeNode("product")))
-enum ShipmentService
-{ 
-    FEDEX, USPS, DHL; 
-} 
+ 
 public class Shipment implements Serializable{
 	
 	
@@ -49,7 +41,7 @@ public class Shipment implements Serializable{
 	   private String shipmentNumber;
 	   
 	   @Column
-	   private ShipmentService shipmentService;   
+	   private ShipmentComp shipComp;   
 
 	   @Column
 	   private Date shipmentDate;
