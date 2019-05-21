@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans:beans xmlns="http://www.springframework.org/schema/integration"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:amqp="http://www.springframework.org/schema/integration/amqp"
+	xmlns:jms="http://www.springframework.org/schema/integration/jms"
+ 	xmlns:stream="http://www.springframework.org/schema/integration/stream"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context.xsd
+			http://www.springframework.org/schema/integration
+			http://www.springframework.org/schema/integration/spring-integration.xsd
+ 			http://www.springframework.org/schema/integration/amqp 
+ 				http://www.springframework.org/schema/integration/amqp/spring-integration-amqp.xsd
+     		http://www.springframework.org/schema/integration/jms
+			http://www.springframework.org/schema/integration/jms/spring-integration-jms.xsd
+			http://www.springframework.org/schema/integration/stream
+			http://www.springframework.org/schema/integration/stream/spring-integration-stream.xsd"> 
+
+
+<!-- Order is actually from remote AMQP source ...NOT from an EIP Gateway -->
+ 
+	<channel id="fromAmqpShipmentNotice" />
+ 	<amqp:inbound-channel-adapter channel="fromAmqpShipmentNotice" queue-names="shipmentNoticeQueue" connection-factory="amqpConnectionFactory" />
+
+ 	<channel id="processShipmentNotice" />
+    <transformer id="ItemTransformer" ref="ItemTransformer1"  input-channel="fromAmqpShipmentNotice" output-channel="processShipmentNotice" />
+    <beans:bean id="ItemTransformer1" class="edu.mum.integration.ShipNoticeTransformerImpl" />    
+
+    <router input-channel="processShipmentNotice" ref="shipNoticeRouter" method="processItem"/>
+   
+    <channel id="shipCompany1" /> 
+	<channel id="shipCompany2" />
+	 
+    <jms:outbound-channel-adapter id="jmsoutshipCompany1" channel="shipCompany1" destination="jmsoutshipCompany1Queue"/> 
+ 	<jms:outbound-channel-adapter id="jmsoutshipCompany2" channel="shipCompany2" destination="jmsoutshipCompany2Queue"/>
+	
+
+ 
+ 
+ </beans:beans>
