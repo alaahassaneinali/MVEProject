@@ -26,6 +26,7 @@ public class Product implements Serializable {
     private String description;
     private String productId;
     private float price;
+    private int quantity;
 
 /*    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
      private Category category;
