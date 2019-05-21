@@ -17,41 +17,29 @@ import edu.mum.ims.service.ShipmentNoticeService;
 
 
 
-
 @RestController
 @RequestMapping("/shipmentnotices")
 public class ShipmentNoticeController {
 	
 	@Autowired
 	private ShipmentNoticeService shipmentService;
- 	
-	@RequestMapping({""})
-	public void list() {
-		 
-		System.out.println("test all aaaaaaaa");
  
-	}	
+ 	@RequestMapping({"","/all"})
+	public List<Shipment> list(Model model) {
+		return  shipmentService.getAllShipmentNotices();
+ 
+	}
 	
-// 	@RequestMapping({"","/all"})
-//	public List<Shipment> list(Model model) {
-//		return  shipmentService.getAllShipmentNotices();
-// 
-//	}	
-
+// 	@RequestMapping("/{id}")
+//	public Shipment getProductById( @PathVariable("id") Long shipmentId) {
+//
+//		return  null;
+// 	}
 	   
-//	  @PostMapping("/add")
-//	  Employee newEmployee(@RequestBody Shipment shipmentToBeAdded) {
-//		  System.out.println("in Post processAddNewProductForm");
-//			shipmentService.addShipment(shipmentToBeAdded); 
-//			return shipmentToBeAdded;
-//	  }
-	
-//	@RequestMapping(value= {"/add"},method = RequestMethod.POST)
-//	//@ResponseStatus(value = HttpStatus.NO_CONTENT)
-//	public Shipment processAddNewProductForm(@RequestBody Shipment shipmentToBeAdded ) {
-//		
-//       System.out.println("in Post processAddNewProductForm");
-////			shipmentService.addShipment(shipmentToBeAdded); 
-//			return shipmentToBeAdded;
-//	}
+	@RequestMapping(value = "", method = RequestMethod.POST)
+	@ResponseStatus(value = HttpStatus.NO_CONTENT)
+	public void processAddNewProductForm(@RequestBody Shipment shipmentToBeAdded ) {
+		System.out.println("in Post processAddNewProductForm");
+			shipmentService.addShipment(shipmentToBeAdded); 
+	}
 }

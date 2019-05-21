@@ -15,9 +15,5 @@ INSERT INTO `ADDRESS` (id,city,state,street,USER_id) VALUES (3,'Ottumwa','Iowa',
 
 INSERT INTO product(id,name,price, description,quantity) VALUES (1,"Sail Boat",22.0, "Sails",0);
 INSERT INTO product(id,name,price, description,quantity) VALUES (2,"Toy Boat",22.0, "floats",0);
-
-
-INSERT INTO store(id,name,address_id) VALUES (1,"Mongolia Store",1);
-INSERT INTO store(id,name,address_id) VALUES (2,"Vitneam Store",2);
  
 					
