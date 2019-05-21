@@ -1,5 +1,6 @@
 package edu.mum.ims.domain;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,12 +11,16 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedAttributeNode;
 import javax.persistence.NamedEntityGraph;
 import javax.persistence.NamedSubgraph;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
+import javax.validation.Valid;
 
 @Entity
 @Table(name = "purchaseShipment")
@@ -43,7 +48,16 @@ public class Shipment {
 	   private String shipmentNumber;
 	   
 	   @Column
-	   private ShipmentService shipmentService;
+	   private ShipmentService shipmentService;   
+
+	   @Column
+	   private Date shipmentDate;
+	   @Column
+	   private Date deliveryDate;	   
+       
+	   @ManyToOne(fetch=FetchType.EAGER)
+	   @JoinColumn (name="store_id") 
+	   private Store store;
 
 	   @OneToMany(mappedBy = "shipment", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	   private Set<ShipmentItem> items = new HashSet<ShipmentItem>();
