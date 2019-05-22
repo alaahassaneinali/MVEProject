@@ -24,7 +24,7 @@ import javax.persistence.Version;
 import javax.validation.Valid;
 
 @Entity
-@Table(name = "purchaseShipment")
+@Table(name = "shipment")
  
 public class Shipment implements Serializable{
 	
