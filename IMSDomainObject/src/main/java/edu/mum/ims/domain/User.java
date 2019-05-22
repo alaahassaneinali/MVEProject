@@ -1,5 +1,6 @@
 package edu.mum.ims.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -27,7 +29,14 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity 
 @JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
-public class User {
+public class User implements Serializable {
+		
+	/**
+	 * This is to fix java.io.InvalidClassException: local class incompatible
+	 * which occurs when serialize and de-serialize object sending between client and server
+	 */
+	@Transient
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)

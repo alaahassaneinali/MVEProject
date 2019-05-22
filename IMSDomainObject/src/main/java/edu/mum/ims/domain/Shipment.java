@@ -65,6 +65,13 @@ public class Shipment implements Serializable {
 	private Store store;
 
 	
+	public Store getStore() {
+		return store;
+	}
+
+	public void setStore(Store store) {
+		this.store = store;
+	}
 	@OneToMany(mappedBy = "shipment", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<ShipmentItem> items = new HashSet<ShipmentItem>();
 
@@ -78,9 +85,17 @@ public class Shipment implements Serializable {
 		this.productId = productId;
 	}
 	
+	@Transient
+	private int quantity;	
 	
+	public int getQuantity() {
+		return quantity;
+	}
 
-	
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
 	public Long getId() {
 		return id;
 	}

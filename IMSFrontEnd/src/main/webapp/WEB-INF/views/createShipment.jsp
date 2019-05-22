@@ -31,6 +31,30 @@
 						<form:errors path="shipmentNumber" cssClass="text-danger"/>
 					</div>
 				</div>
+				<div class="form-group">
+					<label class="control-label col-lg-2 col-lg-2" for="productId"><spring:message code="createShipment.form.productId"/></label>
+					<div class="col-lg-10">
+						<form:input id="productId" path="productId" type="text" value="${productId}" class="form:input-large"/>
+						<form:errors path="productId" cssClass="text-danger"/>
+					</div>
+				</div>
+				
+					<div class="form-group">
+					<label class="control-label col-lg-2 col-lg-2" for="quantity"><spring:message code="createShipment.form.quantity"/></label>
+					<div class="col-lg-10">
+						<form:input id="quantity" path="quantity" type="text"  class="form:input-large"/>
+						<form:errors path="quantity" cssClass="text-danger"/>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="control-label col-lg-2 col-lg-2" for=storeId><spring:message code="createShipment.form.storeID"/></label>
+					<div class="col-lg-10">
+						<form:input id="storeId" path="store.id" type="text" class="form:input-large"/>
+						<form:errors path="store.id" cssClass="text-danger"/>
+					</div>
+				</div>
+
 
 				<div class="form-group">
 					<label class="control-label col-lg-2" for="name"><spring:message code="createShipment.form.shipmentService"/></label>
@@ -39,6 +63,7 @@
 						<form:errors path="shipComp" cssClass="text-danger"/>
 					</div>
 				</div>
+				
 				<form:hidden path="productId" value="${productId}" />
 
 				<div class="form-group">

@@ -1,5 +1,7 @@
 package edu.mum.ims.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -7,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -15,9 +18,16 @@ import edu.mum.ims.validation.annotation.*;
 
 @Entity
 @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@aid")
-public class Address {
+public class Address implements Serializable{
 
-    @Id
+	/**
+	 * This is to fix java.io.InvalidClassException: local class incompatible
+	 * which occurs when serialize and de-serialize object sending between client and server
+	 */
+	@Transient
+	private static final long serialVersionUID = 1L;
+
+	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
  	private long id;
 
@@ -66,6 +76,10 @@ public class Address {
 	}
 	public void setUser(User user) {
 		this.user = user;
+	}
+	@Override
+	public String toString() {
+		return "Address [street=" + street + ", city=" + city + ", state=" + state + ", zipCode=" + zipCode + "]";
 	}
 	
 	

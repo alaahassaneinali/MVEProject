@@ -30,11 +30,13 @@ public class StandardShipmentMessageListener implements MessageListener {
    
 		List<ShipmentItem> items = new ArrayList<ShipmentItem>(routeStandardShipment.getShipment().getItems());
 
-        System.out.println("Shipping Service: Standard Shipment - Message received \n " +
+        System.out.println("==============Shipping Service: Standard Shipment - Message received ==============\n " +
         
-        	"Shipment Number: " + routeStandardShipment.getShipment().getShipmentNumber() +
-        	" -- Shipping Company: + " + routeStandardShipment.getShipment().getShipComp()+
-        	" -- Product to ship: " + items.get(0).getProduct().getId() + "\n") ;
+        	"--Shipment Number: " + routeStandardShipment.getShipment().getShipmentNumber() +
+        	"\n-- Shipping Company: " + routeStandardShipment.getShipment().getShipComp()+
+        	"\n-- Product to ship: " + items.get(0).getProduct().getId()  +
+        	"\n-- Product quantity: " + items.get(0).getQuantity() +
+        	"\n-- Ship to: " + routeStandardShipment.getShipment().getStore().toString() + "\n" );
   
     }
 }
