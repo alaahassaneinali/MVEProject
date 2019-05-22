@@ -7,6 +7,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -15,19 +16,19 @@ import edu.mum.ims.domain.User;
 import edu.mum.ims.service.AuditService;
 
 @Aspect
+@Component
 public class AuditAspect {
 
 	@Autowired
 	AuditService auditService;
 	
-	@Pointcut("execution(* edu.mum.ims.controller..*(..))")
+	@Pointcut("@annotation(org.springframework.web.bind.annotation.RequestMapping))")
 	public void doAudit() {
 		
 	}
 	
-	
 	@Before("doAudit() && args(user, request)")
-	public void doUserAudit(User user, HttpServletRequest request, Joinpoint joinPoint) {
+	public void doUserAudit(User user, HttpServletRequest request) {
 		
 		System.out.println("test inside");
 		ObjectMapper objectMapper = new ObjectMapper();
