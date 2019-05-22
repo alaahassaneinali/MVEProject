@@ -18,6 +18,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
@@ -48,8 +49,8 @@ public class User {
 	@Size(min=6, max = 32, message= "{Size.name.validation}")
 	private String title;
 	
-	@NotNull
- 	private Integer userNumber;
+	@Email
+ 	private String email;
 
 	@Valid
 	@OneToOne(fetch=FetchType.EAGER,  cascade = CascadeType.ALL) 
@@ -86,7 +87,13 @@ public class User {
 	}
  
 	
- 	public UserCredentials getUserCredentials() {
+ 	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public UserCredentials getUserCredentials() {
 		return userCredentials;
 	}
 	public void setUserCredentials(UserCredentials userCredentials) {
@@ -102,12 +109,7 @@ public class User {
 		this.addresses.add(address);
 		address.setUser(this);
 	}
-	public Integer getUserNumber() {
-		return userNumber;
-	}
-	public void setUserNumber(Integer userNumber) {
-		this.userNumber = userNumber;
-	}
+	
 	public void setAge(Integer age) {
 		this.age = age;
 	}

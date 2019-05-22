@@ -57,13 +57,13 @@
 
 
 				<div class="form-group">
-					<label class="control-label col-lg-2" for="userName">User
+					<label class="control-label col-lg-2" for="username">User
 						Name</label>
 					<div class="col-lg-10">
 						<div class="form:input-prepend">
-							<form:input id="userName" path="userCredentials.userName"
+							<form:input id="username" path="userCredentials.username"
 								type="text" class="form:input-large" />
-							<form:errors path="userCredentials.userName"
+							<form:errors path="userCredentials.username"
 								cssClass="text-danger" />
 						</div>
 					</div>

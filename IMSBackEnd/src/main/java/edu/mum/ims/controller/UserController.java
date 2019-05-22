@@ -2,6 +2,7 @@ package edu.mum.ims.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -37,8 +38,10 @@ public class UserController {
 	   
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.NO_CONTENT)
-	public void processAddNewMemberForm(@RequestBody User User) {
-		userService.save(User);
+	public void processAddNewMemberForm(@RequestBody User user, HttpServletRequest request) {
+		
+		System.out.println("test prinnttttt------------******");
+		userService.save(user);
  
 	}
 	

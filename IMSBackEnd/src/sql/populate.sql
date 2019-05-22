@@ -6,8 +6,8 @@ INSERT INTO authority (id,username, authority) VALUES (1,'guest', 'ROLE_USER');
 INSERT INTO authority (id,username, authority) VALUES (2,'admin', 'ROLE_ADMIN');
 INSERT INTO authority (id,username, authority) VALUES (3,'admin', 'ROLE_USER');
 
-INSERT INTO  `USER` (id,firstname, lastname,age,title,userNumber, USER_id) VALUES (1,'Curious','George',12,'Boy Monkey', 8754,'admin');
-INSERT INTO `USER` (id,firstname, lastname,age,title,userNumber,USER_id) VALUES (2,'Allen','Rench',123,'Torque Master', 8733,'guest');
+INSERT INTO  `USER` (id,firstname, lastname,age,title,email, USER_id) VALUES (1,'Curious','George',12,'Boy Monkey', 'admin@mum.edu','admin');
+INSERT INTO `USER` (id,firstname, lastname,age,title,email,USER_id) VALUES (2,'Allen','Rench',123,'Torque Master', 'guest@mum.edu','guest');
 
 INSERT INTO `ADDRESS` (id,city,state,street,USER_id) VALUES (1,'Fairfield','Iowa','Main','1');
 INSERT INTO `ADDRESS` (id,city,state,street,USER_id) VALUES (2,'Batavia','Iowa','Maple','2');
