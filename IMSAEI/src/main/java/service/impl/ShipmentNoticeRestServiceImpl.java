@@ -1,10 +1,14 @@
- 
-package edu.mum.integration;
+package service.impl;
+
+import java.util.Arrays;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
-import org.springframework.integration.annotation.Transformer;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
@@ -13,30 +17,16 @@ import edu.mum.rest.RestHttpHeader;
 import service.ShipmentNoticeRestService;
 
 
-/**
- * Routes order based on order type.
- * 
- */
-//@Component
-public class ShipNoticeTransformerImpl implements ShipNoticeTransformer {
+@Service
+public class ShipmentNoticeRestServiceImpl implements ShipmentNoticeRestService{
 
-//	@Autowired
-//	ShipmentNoticeRestService shipmentNoticeRestService;
-     /**
-     * Transform Order from AMQP to RouteOrder for JMS
-      */
-	@Transformer(inputChannel="fromAmqpShipmentNotice", outputChannel="processShipmentNotice")
-	public Shipment transformShipNotice(Shipment shipment) {
+	@Autowired
+	RestHttpHeader remoteApi;
 
-		
-		save(shipment);
-	  
-		return shipment;
-	}
-	
+
 	public Shipment save(Shipment shipment) {
 		try {
-			RestHttpHeader remoteApi= new RestHttpHeader();
+
 		RestTemplate restTemplate = remoteApi.getRestTemplate();
 		HttpEntity<Shipment> httpEntity = new HttpEntity<Shipment>(shipment, remoteApi.getHttpHeaders());
 		restTemplate.postForObject("http://localhost:8080/IMSBackEnd/shipmentnotices/add", httpEntity, Shipment.class);

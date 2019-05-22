@@ -5,6 +5,7 @@
 	xmlns:beans="http://www.springframework.org/schema/beans"
     xmlns:amqp="http://www.springframework.org/schema/integration/amqp"
 	xmlns:jms="http://www.springframework.org/schema/integration/jms"
+	xmlns:mail="http://www.springframework.org/schema/integration/mail"
  	xmlns:stream="http://www.springframework.org/schema/integration/stream"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 			http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -12,6 +13,8 @@
 			http://www.springframework.org/schema/context/spring-context.xsd
 			http://www.springframework.org/schema/integration
 			http://www.springframework.org/schema/integration/spring-integration.xsd
+			http://www.springframework.org/schema/integration/mail
+    		http://www.springframework.org/schema/integration/mail/spring-integration-mail.xsd
  			http://www.springframework.org/schema/integration/amqp 
  				http://www.springframework.org/schema/integration/amqp/spring-integration-amqp.xsd
      		http://www.springframework.org/schema/integration/jms
@@ -30,6 +33,21 @@
     <beans:bean id="ItemTransformer1" class="edu.mum.integration.ShipNoticeTransformerImpl" />    
 
     <router input-channel="processShipmentNotice" ref="shipNoticeRouter" method="processItem"/>
+   
+    
+    
+    
+    
+    <recipient-list-router id="customerRouter" input-channel="processShipmentNotice" >
+ 
+  <recipient channel="mailChannel"/>
+</recipient-list-router>
+    
+   
+   	<chain input-channel="mailChannel">
+ 	    <service-activator id="emailActivator" ref="emailService"/>
+	    <mail:outbound-channel-adapter id="emailSender" mail-sender="mailSender" />
+	</chain>
    
     <channel id="shipCompany1" /> 
 	<channel id="shipCompany2" />

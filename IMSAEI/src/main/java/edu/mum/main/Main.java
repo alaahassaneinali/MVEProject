@@ -30,7 +30,9 @@ public class Main {
 		"/META-INF/spring/integration/common.xml",
  		"/META-INF/spring/integration/shipmentNoticeGateway.xml",
 		"/META-INF/spring/integration/amqp-shipmenNotice-app-context.xml",
-		"/META-INF/spring/integration/jms-warehouse-app-context.xml"
+		"/META-INF/spring/integration/jms-warehouse-app-context.xml",
+		"/META-INF/spring/integration/mailContext.xml"	
+		
 	};
 
  

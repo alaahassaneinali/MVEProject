@@ -1,6 +1,7 @@
 package edu.mum.ims.domain;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -20,6 +21,7 @@ import javax.persistence.NamedSubgraph;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
 import javax.persistence.Transient;
 import javax.persistence.Version;
 import javax.validation.Valid;
@@ -55,16 +57,34 @@ public class Shipment implements Serializable {
 	@Column
 	private ShipmentComp shipComp;
 
+	
 	@Column
-	private Date shipmentDate;
+	private String shipmentDate;
 	@Column
-	private Date deliveryDate;
+	private String deliveryDate;
 
+	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "store_id")
 	private Store store;
 
 	
+	public String getShipmentDate() {
+		return shipmentDate;
+	}
+
+	public void setShipmentDate(String shipmentDate) {
+		this.shipmentDate = shipmentDate;
+	}
+
+	public String getDeliveryDate() {
+		return deliveryDate;
+	}
+
+	public void setDeliveryDate(String deliveryDate) {
+		this.deliveryDate = deliveryDate;
+	}
+
 	public Store getStore() {
 		return store;
 	}
@@ -80,6 +100,8 @@ public class Shipment implements Serializable {
 	public Long getProductId() {
 		return productId;
 	}
+
+	
 
 	public void setProductId(Long productId) {
 		this.productId = productId;

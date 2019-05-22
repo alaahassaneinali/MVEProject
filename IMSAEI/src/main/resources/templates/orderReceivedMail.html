@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title th:remove="all">Template for Order email </title>
+        <title th:remove="all">Template for Shipment email </title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     </head>
     <body>
@@ -11,26 +11,24 @@
             <img src="cid:imtheguy"  height="80" width="80" /><em>  .com</em>
    		  </div> 
     </div>
-        <p> Greetings  <span th:text="${name}"> </span> </p>
+        <p> Greetings  <span th:text="${shipmentNotice.shipmentNumber}"> </span> </p>
   
-            <H4> We have received your order and are Processing it !</H4>
+            <H4> We have received your Shipment Notice and are Processing it !</H4>
   
-        <p>Here are your Order details:</p>
- 		<b>Order Number: </b> <span th:text="${order.orderNumber}"></span>
+        <p>Here are your Shipment details:</p>
+ 		<b>Order Number: </b> <span th:text="${shipmentNotice.id}"></span>
  		
-<!--          <div th:each="item : ${order.items}" >  -->
+<!--          <div th:each="item : ${shipmentNotice.shipmentNumber}" >  -->
   <div style="text-indent: 3em;">		
-	 		<p><b>Title: </b> <span th:text="${order.title}"></span></p>
-	 		<p><b>Quantity: </b> <span th:text="${order.quantity}"></span></p>
-<!-- 	 		<p><b>Price: </b> <span th:text="${item.product.price}"></span></p> -->
+	 		<p><b>Shipment Number: </b> <span th:text="${shipmentNotice.shipmentNumber}"></span></p>
+	 		<p><b>Service Company: </b> <span th:text="${shipmentNotice.shipComp}"></span></p>
+<!-- 	 		<p><b>Price: </b> <span th:text="${shipmentNotice.shipmentNumber}"></span></p> -->
 </div>	
-<!-- 	 		<p><b>Total: </b> <span th:text="${item.quantity} * ${item.product.price}"></span></p>
-		</div>
- -->		
+	
  		
          <p><br />
-            Thanks for your order, <br />
-            &emsp; <em><b>I'm the Guy! - Online</b></em>
+            Thanks for your Shipment, <br />
+            &emsp; <em><b></b></em>
         </p>
     </body>
 </html>

@@ -36,10 +36,10 @@ public class ShipmentNoticeController {
 //		return  null;
 // 	}
 	   
-	@RequestMapping(value = "", method = RequestMethod.POST)
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.NO_CONTENT)
-	public void processAddNewProductForm(@RequestBody Shipment shipmentToBeAdded ) {
-		System.out.println("in Post processAddNewProductForm");
+	public void addShipmentNotice(@RequestBody Shipment shipmentToBeAdded ) {
+		System.out.println("in Post addShipmentNotice");
 			shipmentService.addShipment(shipmentToBeAdded); 
 	}
 }
