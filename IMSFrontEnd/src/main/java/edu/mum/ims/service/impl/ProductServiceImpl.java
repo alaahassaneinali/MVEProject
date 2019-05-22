@@ -16,8 +16,8 @@ import edu.mum.ims.service.ProductService;
 public class ProductServiceImpl implements ProductService{
 	
  	@Autowired
- 	@Qualifier("Jersey")
-//   @Qualifier("MVC")
+// 	@Qualifier("Jersey")
+   @Qualifier("MVC")
 	private ProductRestService productRestService;
 
 	public List<Product> findAll() {

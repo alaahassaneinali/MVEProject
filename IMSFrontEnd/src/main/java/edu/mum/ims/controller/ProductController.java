@@ -19,17 +19,21 @@ import edu.mum.ims.service.ProductService;
 @Controller
 @RequestMapping("/products")
 public class ProductController {
-	
+
 	@Autowired
 	private ProductService productService;
- 
- 	@RequestMapping({"","/all"})
+
+	@RequestMapping({ "", "/all" })
 	public String list(Model model) {
-		model.addAttribute("products", productService.findAll());
+		try {
+			model.addAttribute("products", productService.findAll());
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
 		return "products";
 	}
-	
- 	@RequestMapping("/{id}")
+
+	@RequestMapping("/{id}")
 	public String getProductById(Model model, @PathVariable("id") Long productId) {
 
 		Product product = productService.findOne(productId);
@@ -37,27 +41,26 @@ public class ProductController {
 		return "product";
 	}
 
-	
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String getAddNewProductForm(@ModelAttribute("newProduct") Product newProduct) {
-	   return "addProduct";
+		return "addProduct";
 	}
-	   
+
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String processAddNewProductForm(@ModelAttribute("newProduct") @Valid Product productToBeAdded, BindingResult result) {
-		if(result.hasErrors()) {
+	public String processAddNewProductForm(@ModelAttribute("newProduct") @Valid Product productToBeAdded,
+			BindingResult result) {
+		if (result.hasErrors()) {
 			return "addProduct";
 		}
 
- //		try {
-			productService.addProduct(productToBeAdded);
+		// try {
+		productService.addProduct(productToBeAdded);
 //		} catch (Exception up) {
 //	      System.out.println("Transaction Failed!!!");
- 
-	//	}
-		
-	   	return "redirect:/products";
+
+		// }
+
+		return "redirect:/products";
 	}
-	
-   
+
 }
