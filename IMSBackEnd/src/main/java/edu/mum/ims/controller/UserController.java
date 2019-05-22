@@ -39,9 +39,7 @@ public class UserController {
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.NO_CONTENT)
 	public void processAddNewMemberForm(@RequestBody User user, HttpServletRequest request) {
-		
-		System.out.println("test prinnttttt------------******");
-		userService.save(user);
+				userService.save(user);
  
 	}
 	
