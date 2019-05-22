@@ -20,42 +20,67 @@ import javax.persistence.NamedSubgraph;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.persistence.Version;
 import javax.validation.Valid;
 
 @Entity
 @Table(name = "purchaseShipment")
- 
-public class Shipment implements Serializable{
+
+public class Shipment implements Serializable {
+
+	/**
+	 * This is to fix java.io.InvalidClassException: local class incompatible
+	 * which occurs when serialize and de-serialize object sending between client and server
+	 */
+	@Transient
+	private static final long serialVersionUID = 1L;
+	public Shipment() {
+		
+	}
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id", updatable = false, nullable = false)
+	private Long id = null;
+	
+	@Version
+	@Column(name = "version")
+	private int version = 0;
+
+	
+	@Column
+	private String shipmentNumber;
+
+	
+	@Column
+	private ShipmentComp shipComp;
+
+	@Column
+	private Date shipmentDate;
+	@Column
+	private Date deliveryDate;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "store_id")
+	private Store store;
+
+	
+	@OneToMany(mappedBy = "shipment", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	private Set<ShipmentItem> items = new HashSet<ShipmentItem>();
+
+	@Transient
+	private Long productId;	
+	public Long getProductId() {
+		return productId;
+	}
+
+	public void setProductId(Long productId) {
+		this.productId = productId;
+	}
 	
 	
-	  @Id
-	   @GeneratedValue(strategy = GenerationType.AUTO)
-	   @Column(name = "id", updatable = false, nullable = false)
-	   private Long id = null;
-	   @Version
-	   @Column(name = "version")
-	   private int version = 0;
 
-	   @Column
-	   private String shipmentNumber;
-	   
-	   @Column
-	   private ShipmentComp shipComp;   
-
-	   @Column
-	   private Date shipmentDate;
-	   @Column
-	   private Date deliveryDate;	   
-       
-	   @ManyToOne(fetch=FetchType.EAGER)
-	   @JoinColumn (name="store_id") 
-	   private Store store;
-
-	   @OneToMany(mappedBy = "shipment", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	   private Set<ShipmentItem> items = new HashSet<ShipmentItem>();
-
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -80,7 +105,6 @@ public class Shipment implements Serializable{
 		this.shipmentNumber = shipmentNumber;
 	}
 
-	
 	public ShipmentComp getShipComp() {
 		return shipComp;
 	}
@@ -95,7 +119,7 @@ public class Shipment implements Serializable{
 
 	public void setItems(Set<ShipmentItem> items) {
 		this.items = items;
-	}	
+	}
 
 	public void addShipmentItem(ShipmentItem shipmentItem) {
 		this.items.add(shipmentItem);

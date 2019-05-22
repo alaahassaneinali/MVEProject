@@ -15,10 +15,7 @@
 				<h1>Products</h1>
 				<p>Add products</p>
 			</div>
- 			<div class="pull-right" style="padding-right:50px">
-				<a href="?language=en" >English</a>|<a href="?language=nl" >Dutch</a>					
-			</div>
-			
+ 	
 		</div>
 	</section>
 	<section class="container">

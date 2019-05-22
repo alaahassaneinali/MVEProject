@@ -30,12 +30,11 @@
 		 					<a href="<spring:url value="/products/all" />" class="btn btn-default pull-right">Product List</a>	
 		 					<br>
 		 					<a href="<spring:url value='/logout' />" class="btn btn-default pull-right"> Logout</a>
+		 					<br>
 		 
  					    </c:otherwise>
 					</c:choose>	
- 					 <a href="<spring:url value='/user' />" class="btn btn-default">
-						<span class="glyphicon-hand-left glyphicon"></span> Go to Community
-					</a>
+ 			
 				</div>	
 	 			<div class="pull-left"> <h3>${SpecialBlurb}</h3> </div>
 		</div>	

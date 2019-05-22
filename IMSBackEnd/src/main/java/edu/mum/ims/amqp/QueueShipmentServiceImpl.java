@@ -13,7 +13,7 @@ public class QueueShipmentServiceImpl implements QueueShipmentService {
 	public void publish(Shipment shipment) {
 		try {
 			ApplicationContext context = new GenericXmlApplicationContext(
-					"classpath:conetext/producer-app-context.xml");
+					"classpath:context/producer-app-context.xml");
 			RabbitTemplate directTemplate = context.getBean("directTemplate", RabbitTemplate.class);
 			directTemplate.convertAndSend("shipment", shipment);
 		} catch (Exception ex) {

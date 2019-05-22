@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.mum.ims.domain.Shipment;
-import edu.mum.ims.service.ShipmentNoticeService;
 import edu.mum.ims.service.ShipmentService;
 
 
@@ -24,7 +23,8 @@ public class ShipmentController {
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.NO_CONTENT)
 	public void sendShipment(@RequestBody Shipment shipmentToBeSent ) {
-		System.out.println("in Post processAddNewProductForm");
-			shipmentService.sendShipment(shipmentToBeSent); 
+		shipmentService.sendShipment(shipmentToBeSent); 
 	}
+	
+	
 }

@@ -34,6 +34,12 @@
 									class="btn btn-primary"> <span
 									class="glyphicon-info-sign glyphicon" /></span> Details
 								</a>
+							
+								<a
+									href=" <spring:url value="/shipments/${product.id}" /> "
+									class="btn btn-primary"> <span
+									class="glyphicon-info-sign glyphicon" /></span> Ship To Store
+								</a>
 							</p>
 
 						</div>

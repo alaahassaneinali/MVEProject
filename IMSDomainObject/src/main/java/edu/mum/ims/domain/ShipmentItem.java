@@ -1,5 +1,7 @@
 package edu.mum.ims.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,66 +10,77 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 import javax.persistence.Version;
 
 @Entity
-public class ShipmentItem  {
+public class ShipmentItem implements Serializable{
 
-   @Id
-   @GeneratedValue(strategy = GenerationType.AUTO)
-   @Column(name = "id", updatable = false, nullable = false)
-   private Long id = null;
-   @Version
-   @Column(name = "version")
-   private int version = 0;
+	/**
+	 * This is to fix java.io.InvalidClassException: local class incompatible
+	 * which occurs when serialize and de-serialize object sending between client and server
+	 */
+	@Transient
+	private static final long serialVersionUID = 1L;
 
-   @Column
-   private int quantity;
+	public ShipmentItem() {
+		
+	}
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id", updatable = false, nullable = false)
+	private Long id = null;
+	@Version
+	@Column(name = "version")
+	private int version = 0;
 
-   @ManyToOne
-   private Shipment shipment;
+	@Column
+	private int quantity;
 
-   @ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-   private Product product;
+	@ManyToOne
+	private Shipment shipment;
 
-public Long getId() {
-	return id;
-}
+	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	private Product product;
 
-public void setId(Long id) {
-	this.id = id;
-}
+	public Long getId() {
+		return id;
+	}
 
-public int getVersion() {
-	return version;
-}
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-public void setVersion(int version) {
-	this.version = version;
-}
+	public int getVersion() {
+		return version;
+	}
 
-public int getQuantity() {
-	return quantity;
-}
+	public void setVersion(int version) {
+		this.version = version;
+	}
 
-public void setQuantity(int quantity) {
-	this.quantity = quantity;
-}
+	public int getQuantity() {
+		return quantity;
+	}
 
-public Shipment getShipment() {
-	return shipment;
-}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
 
-public void setShipment(Shipment shipment) {
-	this.shipment = shipment;
-}
+	public Shipment getShipment() {
+		return shipment;
+	}
 
-public Product getProduct() {
-	return product;
-}
+	public void setShipment(Shipment shipment) {
+		this.shipment = shipment;
+	}
 
-public void setProduct(Product product) {
-	this.product = product;
-}
-   
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
 }

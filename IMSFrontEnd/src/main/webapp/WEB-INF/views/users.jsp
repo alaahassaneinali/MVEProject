@@ -12,9 +12,7 @@
 	<section>
 		<div class="jumbotron">
 			<div class="container">
-				<h1>Our People</h1>
-				<p>All of the contributors to our Community!!!</p>
- 			
+				<h1>Users</h1>
  				<div class="pull-left"> <h3>${SpecialBlurb}</h3> </div>
 			</div>
  			<c:if test = "${not empty user }" >
