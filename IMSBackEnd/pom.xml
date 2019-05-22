@@ -5,6 +5,7 @@
 	<groupId>edu.mum</groupId>
 	<artifactId>ims-backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
 	<dependencyManagement>
 		<dependencies>
 
@@ -68,6 +69,20 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
 		</dependency>
+		
+		<!--  AOP-->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+		</dependency>
 
 
 		<dependency>
@@ -83,7 +98,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.12</version>
+			<!-- <version>8.0.12</version> -->
 		</dependency>
 
 		<dependency>
@@ -126,8 +141,8 @@
 				<artifactId>tomcat7-maven-plugin</artifactId>
 				<version>2.2</version>
 				<configuration>
-					<port>9091</port>
-					<path>/</path>
+					<port>8080</port>
+					<path>/IMSBackEnd</path>
 				</configuration>
 			</plugin>
 		</plugins>
