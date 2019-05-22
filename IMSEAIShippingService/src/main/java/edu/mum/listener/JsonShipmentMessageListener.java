@@ -28,10 +28,13 @@ public class JsonShipmentMessageListener implements MessageListener {
 		}
 		List<ShipmentItem> items = new ArrayList<ShipmentItem>(routeJsonShipment.getRouteStandardShipment().getShipment().getItems());
        
-		System.out.println("Shipping Service: Shipment in JSON - Message received \n" + 
-        	"Shipment Number: " + routeJsonShipment.getRouteStandardShipment().getShipment().getShipmentNumber() +
-        	" -- Shipping Company: + " + routeJsonShipment.getRouteStandardShipment().getShipment().getShipComp() +
-        	" -- Product to ship: + " + items.get(0).getProduct().getId() + "\n") ;
+		System.out.println("==============Shipping Service: Shipment in JSON - Message received ==============\n" + 
+        	"--Shipment Number: " + routeJsonShipment.getRouteStandardShipment().getShipment().getShipmentNumber() +
+        	"\n-- Shipping Company: " + routeJsonShipment.getRouteStandardShipment().getShipment().getShipComp() +
+        	"\n-- Product to ship: " + items.get(0).getProduct().getId() +
+        	"\n-- Product quantity: " + items.get(0).getQuantity() +
+        	"\n-- Ship to: " + routeJsonShipment.getRouteStandardShipment().getShipment().getStore().toString() + "\n");
+		
 	}
   
 }
