@@ -1,3 +1,6 @@
 /.metadata/
 .project
 /target/*
+IMSBackEnd/src/main/resources/application.properties
+IMSBackEnd/src/main/resources/application.properties
+IMSBackEnd/target/classes/application.properties

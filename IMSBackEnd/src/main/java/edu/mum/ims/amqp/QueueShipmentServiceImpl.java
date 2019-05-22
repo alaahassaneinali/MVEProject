@@ -4,7 +4,9 @@ import edu.mum.ims.domain.Shipment;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
+import org.springframework.stereotype.Service;
 
+@Service
 public class QueueShipmentServiceImpl implements QueueShipmentService {
 
 	@Override
