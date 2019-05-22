@@ -25,7 +25,7 @@
 			</bean>
 		</mvc:message-converters>
 	</mvc:annotation-driven>
-	<aop:aspectj-autoproxy/>
+	<aop:aspectj-autoproxy proxy-target-class="true"/>
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/" />

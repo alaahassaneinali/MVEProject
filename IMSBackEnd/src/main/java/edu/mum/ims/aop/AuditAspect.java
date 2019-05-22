@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import edu.mum.ims.domain.Product;
 import edu.mum.ims.domain.User;
 import edu.mum.ims.service.AuditService;
 
@@ -29,9 +30,7 @@ public class AuditAspect {
 	
 	@Before("doAudit() && args(user, request)")
 	public void doUserAudit(User user, HttpServletRequest request) {
-		
-		System.out.println("test inside");
-		ObjectMapper objectMapper = new ObjectMapper();
+				ObjectMapper objectMapper = new ObjectMapper();
 		String requestJson = "";
 		try {
 			requestJson = objectMapper.writeValueAsString(user);
@@ -39,6 +38,19 @@ public class AuditAspect {
 			//log
 		}
 		auditService.doAudit(request.getRequestURI(), User.class.getName(),requestJson );
+	}
+	
+
+	@Before("doAudit() && args(product, request)")
+	public void doProductAudit(Product product, HttpServletRequest request) {
+				ObjectMapper objectMapper = new ObjectMapper();
+		String requestJson = "";
+		try {
+			requestJson = objectMapper.writeValueAsString(product);
+		} catch (JsonProcessingException e) {
+			//log
+		}
+		auditService.doAudit(request.getRequestURI(), Product.class.getName(),requestJson );
 	}
 
 }
