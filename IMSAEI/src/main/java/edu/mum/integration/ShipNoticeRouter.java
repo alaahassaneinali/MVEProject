@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import edu.mum.ims.domain.Shipment;
+import edu.mum.ims.domain.ShipmentComp;
 
 import org.springframework.integration.annotation.MessageEndpoint;
 import org.springframework.integration.annotation.Router;
@@ -27,10 +28,10 @@ public class ShipNoticeRouter {
 		
 	    String destination = null;
 	    
-  	    if(shipment.getShipmentNumber().equals("1")) {
-  	    	destination = "shipCompany1";
+  	    if(shipment.getShipComp().equals(ShipmentComp.FEDEX)) {
+  	    	destination = "FEDEX";
   	    }else {
-  	    	destination = "shipCompany2";
+  	    	destination = "DHL";
   	    }
 
 		return destination;
