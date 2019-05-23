@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import edu.mum.ims.dao.AddressDao;
+import edu.mum.ims.dao.StoresDao;
 import edu.mum.ims.dao.GenericDao;
 import edu.mum.ims.domain.Address;
 
@@ -16,7 +16,7 @@ public class AddressServiceImpl implements edu.mum.ims.service.AddressService {
 	
 	
  	@Autowired
-	private AddressDao memberDao;
+	private StoresDao memberDao;
 
     public void save( Address address) {  		
 		memberDao.save(address);

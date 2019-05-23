@@ -100,13 +100,12 @@ public class Shipment implements Serializable {
 	public Long getProductId() {
 		return productId;
 	}
-
 	
-
 	public void setProductId(Long productId) {
 		this.productId = productId;
 	}
 	
+		
 	@Transient
 	private int quantity;	
 	

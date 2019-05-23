@@ -20,6 +20,7 @@ import edu.mum.ims.domain.ShipmentItem;
 import edu.mum.ims.domain.Store;
 import edu.mum.ims.service.ProductService;
 import edu.mum.ims.service.ShipmentService;
+import edu.mum.ims.service.StoreService;
 
 @Controller
 @RequestMapping("/shipments")
@@ -27,11 +28,13 @@ public class ShipmentController {
 
 	@Autowired
 	private ProductService productService;
-	
+
 	@Autowired
 	ShipmentService shipmentService;
-	
-	
+
+	@Autowired
+	StoreService storeService;
+
 	@RequestMapping(value = "/{productId}", method = RequestMethod.GET)
 	public String getCreateShipmentForm(Model model, @PathVariable("productId") Long productId,
 			@ModelAttribute("newShipment") Shipment newShipment) {
@@ -40,8 +43,51 @@ public class ShipmentController {
 		return "createShipment";
 	}
 
+//	@RequestMapping(value = "/{productId}", method = RequestMethod.POST)
+	public String processCreateShipment(@ModelAttribute("newShipment") @Valid Shipment newShipment,
+			@PathVariable("productId") Long productId, BindingResult result) {
+
+		if (result.hasErrors()) {
+			return "createShipment";
+		} else {
+			try {
+
+				Product product = productService.findOne(productId);
+				ShipmentItem shipmentItem = new ShipmentItem();
+				shipmentItem.setProduct(product);
+				shipmentItem.setQuantity(newShipment.getQuantity());
+				newShipment.getItems().add(shipmentItem);
+
+				/*
+				 * For integration. should get from db
+				 */
+				Address address = new Address();
+				address.setId(1);
+				address.setCity("Fairfield");
+				address.setState("IA");
+				address.setStreet("1000 N 4th Street");
+				address.setZipCode("52556");
+
+				Store store = new Store();
+				store.setId(1);
+				store.setName("Fairfield Walmart");
+				store.setAddress(address);
+
+				newShipment.setStore(store);
+
+				shipmentService.createShipment(newShipment);
+
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+
+		}
+
+		return "redirect:/products";
+	}
+
 	@RequestMapping(value = "/{productId}", method = RequestMethod.POST)
-	public String processCreateShipment(@ModelAttribute("newProduct") @Valid Shipment newShipment,
+	public String createShipment(@ModelAttribute("newShipment") @Valid Shipment newShipment,
 			@PathVariable("productId") Long productId, BindingResult result) {
 
 		if (result.hasErrors()) {
@@ -53,25 +99,12 @@ public class ShipmentController {
 				shipmentItem.setProduct(product);
 				shipmentItem.setQuantity(newShipment.getQuantity());
 				newShipment.getItems().add(shipmentItem);
+
+				Store store = storeService.getStoreById(newShipment.getStore().getId());
 				
-				/*
-				 * For integration. should get from db
-				 */
-				Address address = new Address();
-				address.setId(1);
-				address.setCity("Fairfield");
-				address.setState("IA");
-				address.setStreet("1000 N 4th Street");
-				address.setZipCode("52556");
-				
-				Store store = new Store();
-				store.setId(1);
-				store.setName("Fairfield Walmart");
-				store.setAddress(address);
-				
+				//Don't need to send user info
+				store.getAddress().setUser(null);
 				newShipment.setStore(store);
-			
-				
 				shipmentService.createShipment(newShipment);
 
 			} catch (Exception ex) {

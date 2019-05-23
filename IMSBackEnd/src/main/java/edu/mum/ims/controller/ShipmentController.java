@@ -25,6 +25,5 @@ public class ShipmentController {
 	public void sendShipment(@RequestBody Shipment shipmentToBeSent ) {
 		shipmentService.sendShipment(shipmentToBeSent); 
 	}
-	
-	
+		
 }

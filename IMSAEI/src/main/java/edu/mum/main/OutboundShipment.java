@@ -30,7 +30,8 @@ public class OutboundShipment {
 	private final static String[] configFilesAutionItemEAIBus = {
 			"/META-INF/spring/integration/common.xml",
 	 		"/META-INF/spring/integration/outboundshipment.xml",
-			"/META-INF/spring/integration/amqp-shipmenNotice-app-context.xml"
+			"/META-INF/spring/integration/amqp-shipmenNotice-app-context.xml",
+			"/META-INF/spring/integration/mailContext.xml"	
 		};
 
  
