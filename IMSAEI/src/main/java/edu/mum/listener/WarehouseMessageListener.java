@@ -24,7 +24,10 @@ public class WarehouseMessageListener implements MessageListener {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        System.out.println("Shipment Info: " );
+        System.out.println("Shipment Notice Info: " );
         System.out.println("         Shipment Number: "  +    ship.getShipmentNumber());
+        System.out.println("          DeliveryDate: "  +    ship.getDeliveryDate());
+        System.out.println("          ShipmentDate: "  +    ship.getShipmentDate());
+        System.out.println("          Service Company: "  +    ship.getShipComp());
     }
 }
