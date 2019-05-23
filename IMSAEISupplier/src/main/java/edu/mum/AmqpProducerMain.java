@@ -20,7 +20,7 @@ public class AmqpProducerMain {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         System.out.println();
        
-       System.out.print("*************HIT RETURN To Send[Kazoo & Hammer items] to itemQueue*********************::   ");
+       System.out.print("*************HIT RETURN To Send Shipment Notice to ShipmentNoticeQueue*********************::   ");
        System.out.println();
        try {
 			in.readLine();
@@ -34,7 +34,7 @@ public class AmqpProducerMain {
        ItemService itemService=new ItemServiceImpl(); 
        itemService.publish(itemTemplate);
 
-   	System.out.print("************* Kazoo & Hammer items sent to itemQueue  on itemDirectExchange Exchange*********************::   ");
+   	System.out.print("*************Shipment Notice Number 1 sent to ShipmentNoticeQueue ******************::   ");
        System.out.println();
        System.out.println();
    

@@ -38,22 +38,26 @@
     
     
     
-    <recipient-list-router id="customerRouter" input-channel="processShipmentNotice" >
- 
+
+   
+    <channel id="FEDEX" /> 
+     <channel id="DHL" /> 
+	<channel id="extraChannel" /> 
+	
+	    <recipient-list-router id="customerRouter" input-channel="FEDEX" > 
   <recipient channel="mailChannel"/>
-</recipient-list-router>
-    
+   <recipient channel="extraChannel"/>
+</recipient-list-router> 
    
    	<chain input-channel="mailChannel">
  	    <service-activator id="emailActivator" ref="emailService"/>
 	    <mail:outbound-channel-adapter id="emailSender" mail-sender="mailSender" />
 	</chain>
-   
-    <channel id="shipCompany1" /> 
-	<channel id="shipCompany2" />
+	
+	
+	
 	 
-    <jms:outbound-channel-adapter id="jmsoutshipCompany1" channel="shipCompany1" destination="jmsoutshipCompany1Queue"/> 
- 	<jms:outbound-channel-adapter id="jmsoutshipCompany2" channel="shipCompany2" destination="jmsoutshipCompany2Queue"/>
+    <jms:outbound-channel-adapter id="jmsoutshipCompany1" channel="extraChannel" destination="jmsoutshipCompany1Queue"/> 
 	
 
  

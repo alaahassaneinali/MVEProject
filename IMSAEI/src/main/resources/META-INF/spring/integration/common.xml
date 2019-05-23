@@ -46,9 +46,6 @@
 		<constructor-arg value="queue.shipCompany1" />
 	</bean>
 
-	<bean id="jmsoutshipCompany2Queue"
-		class="org.apache.activemq.command.ActiveMQQueue">
-		<constructor-arg value="queue.shipCompany2" />
-	</bean>
+
 
 </beans>
