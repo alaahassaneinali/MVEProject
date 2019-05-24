@@ -1,5 +1,7 @@
 package edu.mum.ims.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import edu.mum.ims.domain.Shipment;
@@ -19,6 +21,13 @@ public class StoreServiceImpl implements StoreService{
 	public Store getStoreById(Long id) {
 
 		return storeRestService.getStoreById(id);
+	}
+
+	@Override
+	public List<Store> getAll() {
+		
+		return storeRestService.getAll();
+		
 	}
 	
 }

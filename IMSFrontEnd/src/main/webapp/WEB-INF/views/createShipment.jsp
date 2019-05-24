@@ -59,11 +59,11 @@
 					<label class="control-label col-lg-2 col-lg-2" for=storeId><spring:message
 							code="createShipment.form.storeID" /></label>
 					<div class="col-lg-10">
-		
+
 						<form:select id="storeId" path="store.id">
-							<option value="1">Walmart FairField</option>
-							<option value="2">Walmart Batavia</option>
-							<option value="2">Walmart Ottumwa</option>
+							<c:forEach var="store" items="${stores}">
+								<option value="${store.id}">${store.name}</option>
+							</c:forEach>
 						</form:select>
 						<form:errors path="store.id" cssClass="text-danger" />
 					</div>
@@ -75,16 +75,14 @@
 							code="createShipment.form.shipmentService" /></label>
 					<div class="col-lg-10">
 						<form:select id="shipComp" path="shipComp">
-							<option value="DHL">DHL</option>
-							<option value="FEDEX">FEDEX</option>
-							<option value="USPS">USPS</option>
+							<c:forEach var="service" items="${shippingServices}">
+								<option value="${service}">${service}</option>
+							</c:forEach>
 						</form:select>
 						<form:errors path="shipComp" cssClass="text-danger" />
 					</div>
 				</div>
-
-
-				<div class="form-group">
+			<div class="form-group">
 					<div class="col-lg-offset-2 col-lg-10">
 						<input type="submit" id="create" class="btn btn-primary"
 							value="Create" />

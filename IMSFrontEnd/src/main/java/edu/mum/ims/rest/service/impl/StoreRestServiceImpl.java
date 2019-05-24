@@ -1,5 +1,8 @@
 package edu.mum.ims.rest.service.impl;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -34,6 +37,18 @@ public class StoreRestServiceImpl  implements StoreRestService {
 				Store.class);
 		Store store = responseEntity.getBody();
 		return store;
+	}
+
+
+
+	@Override
+	public List<Store> getAll() {
+		RestTemplate restTemplate = restHelper.getRestTemplate();
+		HttpEntity httpEntity = new HttpEntity(restHelper.getHttpHeaders());
+		ResponseEntity<Store[]> responseEntity = restTemplate.exchange(baseUrlExtended + "all", HttpMethod.GET, httpEntity,
+				Store[].class);
+		List<Store> stores = Arrays.asList(responseEntity.getBody());
+		return stores;
 	}
 
 }
